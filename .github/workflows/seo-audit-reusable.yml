@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out caller repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Check out shared SEO engine
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: karefined-eng/website-seo-automation
-          ref: main
+          ref: e722a76b3f9c4e498c1a7c7839b1b235d50e716d # main
           path: .seo-engine
 
       - name: Run SEO checks
