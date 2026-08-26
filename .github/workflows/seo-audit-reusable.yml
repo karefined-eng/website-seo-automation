@@ -1,0 +1,31 @@
+name: Reusable SEO audit
+
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        description: Path to the caller repository's SEO configuration file
+        required: false
+        default: seo.config.json
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Validate website SEO surface
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out caller repository
+        uses: actions/checkout@v4
+
+      - name: Check out shared SEO engine
+        uses: actions/checkout@v4
+        with:
+          repository: karefined-eng/website-seo-automation
+          ref: main
+          path: .seo-engine
+
+      - name: Run SEO checks
+        run: python3 .seo-engine/scripts/seo_check.py --config "${{ inputs.config-path }}"
